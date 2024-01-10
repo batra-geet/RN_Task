@@ -15,11 +15,15 @@ import {
 } from '../../redux/actions/HomeActions';
 import flightLogo from '../../assets/flightLogo.png';
 
-const DetailsScreen = ({route, navigation}) => {
+const DetailsScreen = ({route}) => {
   const {flights, isBookingFlow} = route.params;
   const dispatch = useDispatch();
   const data = useSelector(state => state.flightsReducer);
 
+  /**
+   * this method sets the flight no as booked and save it to redux
+   * @param {string} id unique booking if a flight
+   */
   const handleBooking = id => {
     dispatch(flightsLoading(true));
     console.log(data.flightsList);
@@ -38,7 +42,7 @@ const DetailsScreen = ({route, navigation}) => {
       }),
     );
     dispatch(flightsLoading(false));
-    Alert.alert('', 'Flight has been Booked! Thaanks.');
+    Alert.alert('', 'Flight has been Booked! Thanks.');
   };
 
   const renderDivider = () => {
@@ -116,7 +120,6 @@ const DetailsScreen = ({route, navigation}) => {
     const {
       displayData: {source, destination, stopInfo},
       id,
-      isBooked = false,
     } = item.item;
     return (
       <View style={styles.listItemStyle}>
