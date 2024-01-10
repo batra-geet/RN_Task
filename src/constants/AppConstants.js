@@ -1,0 +1,15 @@
+export const ScreenNames = {
+  SCREEN_STACK: 'SCREEN_STACK',
+  HOME_SCREEN: 'HOME_SCREEN',
+  DETAILS_SCREEN: 'DETAILS_SCREEN',
+};
+
+export const Colors = {
+  PRIMARY_BACKGROUND: '#000080',
+  PRIMARY_LITE: '#e6e6ff',
+  PRIMARY_TEXT: '#FFFFFF',
+  WHITE: '#FFFFFF',
+  BLACK: '#000000',
+  DARK_GRAY: '#4a4a4a',
+  OFF_WHITE: '#e2e2e2',
+};
