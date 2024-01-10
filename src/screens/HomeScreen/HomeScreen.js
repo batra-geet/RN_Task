@@ -24,8 +24,8 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const data = useSelector(state => state.flightsReducer);
-  const [source, setSource] = useState('Delhi');
-  const [destination, setDestination] = useState('Mumbai');
+  const [source, setSource] = useState('');
+  const [destination, setDestination] = useState('');
 
   useEffect(() => {
     if (data.isSuccess) {
@@ -41,7 +41,10 @@ const HomeScreen = () => {
       });
       dispatch(flightsLoading(false));
       if (filteredFlights.length <= 0) {
-        showAlert('', `No Flights found between ${source} and ${destination}`);
+        showAlert(
+          '',
+          `No Flights found between ${source} and ${destination}. Please Select between Delhi, Mumbai or Chennai`,
+        );
         return;
       }
       navigation.navigate(ScreenNames.DETAILS_SCREEN, {
@@ -79,10 +82,11 @@ const HomeScreen = () => {
   };
 
   const handleBookingFlow = () => {
-    const bookingList = data.flightsList.data.result.filter(
+    let bookingList = [];
+    bookingList = data?.flightsList?.data?.result.filter(
       item => item.isBooked === true,
     );
-    if (bookingList.length <= 0) {
+    if (!bookingList || bookingList?.length <= 0) {
       showAlert('', 'No Bookings Available');
       return;
     }
